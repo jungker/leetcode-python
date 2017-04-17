@@ -24,18 +24,16 @@ class Solution(object):
         res.next = head
         for i in range(m - 1):
             p = p.next
-        for i in range(n - 1):
+        p0 = p
+        p = p.next
+        for i in range(n):
             q = q.next
-        t1 = p.next if p else None
-        t2 = q.next if q else None
-        tt = t2.next
-        p.next = t2
-        if t1.next == t2:
-            t2.next = t1
-        else:
-            t2.next = t1.next
-            q.next = t1
-        t1.next = tt
+        while p != q:
+            t = p
+            p = p.next
+            t.next = q.next
+            q.next = t
+        p0.next = q
         return res.next
 
 
@@ -48,5 +46,5 @@ if __name__ == '__main__':
 
     solution = Solution()
     m, n = 2, 4
-    res = solution.reverseBetween(p, 1, 5)
+    res = solution.reverseBetween(p, 4, 5)
     printListNode(res)
