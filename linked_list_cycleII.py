@@ -16,8 +16,11 @@ class Solution(object):
             a = a.next
             b = b.next.next
             if a == b:
-                return True
-        return False
+                c = head
+                while a != c:
+                    c = c.next
+                    a = a.next
+                return c
 
 
 if __name__ == '__main__':
